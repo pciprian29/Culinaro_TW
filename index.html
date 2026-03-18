@@ -15,32 +15,67 @@
     <link rel="shortcut icon" href="/resurse/imagini/favicon/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/resurse/imagini/favicon/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="Culinaro" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="manifest" href="/resurse/imagini/favicon/site.webmanifest" />
+    <link rel="stylesheet" href="/resurse/CSS/reset.css" type="text/css">
     <link rel="stylesheet" href="./resurse/CSS/general.css" type="text/css" />
+    <link rel="stylesheet" href="/resurse/css/nav.css" type="text/css" />
+    
 </head>
 
 <body>
     <header>
-        <h1> Magazin online Culinaro </h1>
-        <img src="./resurse/imagini/sigla-banner.png" alt="sigla" style="width: 30%;height: 30%;" />
+        <a img src="/resurse/imagini/sigla-banner-no-bg.png" alt="logo" id="logo" href="#welcome"></a>
         <nav>
-            <ul>
-                <li><a href="index.html">Pagina Principala </a>
-                    <ul>
-                        <li><a href="#welcome">Bine ati venit</a></li>
-                        <li><a href="#promotii">Promotii</a></li>
-                        <li><a href="#produse">Produse</a></li>
-                        <li><a href="#orar">Orar</a></li>
-                        <li><a href="#anunturi">Anunturi</a></li>
-                        <li><a href="#index-intrebari">Intrebari frecvente</a></li>
-                        <li><a href="#galerie-statica">Galerie</a></li>
-                        <li><a href="#ghid-video">Ghiduri video</a></li>
-                    </ul></li>
-                <li><a href="catalog.html">Catalog </a></li>
-                <li><a href="catalog.html">Catalog </a></li>
-                <li><a href="contact.html">Contact </a></li>
-            </ul>
-        </nav>
+            
+        <label id="hamburger" for="ch-menu">
+            <img src="resurse/imagini/Hamburger_icon_alb.png" alt="menu">    
+        </label>
+        <input type="checkbox" id="ch-menu"/>
+        <ul class="meniu">
+            <li>
+                <div class="text-icon" id="acasa">Acasa</div>
+                <div class="imag-icon" id="acasa-mediu">
+                    <span class="fas fa-regular fa-house"></span>
+                </div>
+                <ul>
+                    <li><a href="#welcome">Bine ati venit</a></li>
+                    <li><a href="#promotii">Promotii</a></li>
+                    <li><a href="#anunturi">Anunturi</a></li>
+                    <li><a href="#produse">Oferta</a></li>
+                    <li><a href="#orar">Orar</a></li>
+                    <li><a href="#index-intrebari">Întrebări</a></li>
+                    <li><a href="#retete">Rețete</a></li>
+                    <li><a href="#subsol">ceva</a></li>
+                </ul>
+            
+            
+            </li>
+            <li>
+                <div class="text-icon"><a href="#">Inregistrare</a></div>
+                <div class="imag-icon" ><span class="fas fa-solid fa-book"></span></div></li>
+            <li><div>Despre</div>
+                <ul>                        
+                    <li><a href="despre.html#prezentare">Prezentare</a></li>
+                    <li><a href="despre.html#istoric">Istoric</a></li>
+                    <li><a href="despre.html#motivatie">Motivatie</a></li>
+                    <li><a href="despre.html#galerie">Galerie</a></li>
+                </ul>
+            </li>
+            <li><div>Produse</div>
+                <ul>
+                    <li><a href="#">Toate</a></li>
+                    <li><a href="#">Prajituri</a></li>
+                    <li><a href="#">Torturi</a></li>
+                    <li><a href="#">Patiserie</a></li>
+                </ul>
+            
+            </li>
+            <li><a href="#"><i class="fa-regular fa-envelope"></i> Contact</a></li>
+        </ul>
+    </nav>
     </header>
     <main>
         <div id="grid-pagina">
@@ -49,21 +84,6 @@
                     <h2>Bine ati venit</h2>
                     <p class="subtitlu">Prezentarea magazinului</p>
                 </hgroup>
-                <section id="harta-interactiva">
-                    <h2>Explorează o bucătărie profesională</h2>
-                    <p>Dă click pe echipamentele din imaginea de mai jos pentru a descoperi rapid categoriile noastre de top.</p>
-
-                    <img src="./resurse/imagini/harta-interactiva.jpg" alt="Bucătărie Horeca Interactivă" usemap="#harta_bucatarie" width="900" height="500">
-
-                    <map name="harta_bucatarie">
-                        <area shape="rect" coords="50,150,250,450" href="#produse" alt="Cuptoare Profesionale" title="Vezi Echipamente Termice">
-
-                        <area shape="circle" coords="450,300,75" href="#produse" alt="Tigăi și Oale" title="Descoperă Ustensilele de Gătit">
-
-                        <area shape="poly" coords="350,50,550,50,600,120,300,120" href="#produse" alt="Hote și Ventilație" title="Soluții de Ventilație">
-                    </map>
-                </section>
-
             <p class="intro">Vă mulțumim că ne vizitați site-ul.</p>
             </section>
             <section id="promotii">
@@ -106,6 +126,12 @@
                             oricând în primele 12 luni de la achiziție.</li>
                     </ul>
                 </article>
+            </section>
+            <section>   
+                <h2> Calendar Evenimente</h2>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
             </section>
             <section id="produse">
                 <h2>Produsele noastre</h2>
@@ -169,7 +195,7 @@
                     </ul>
                 </section><br>
                 <p>Răsfoiți catalogul nostru complet de echipamente Horeca premium direct în pagină, pentru a vedea specificațiile tehnice detaliate:</p>
-                <object data="./resurse/documente/catalog_final.pdf" type="application/pdf" style="width: 40%; height: 600px;">
+                <object data="./resurse/documente/catalog_final.pdf" type="application/pdf" style="width: 100%;">
                     <div>
                         <p>Browserul dumneavoastră nu suportă vizualizarea directă a fișierelor PDF.</p>
                         <a href="./resurse/documente/catalog_echipamente.pdf" download="Catalog_Culinaro_2026.pdf">
@@ -181,7 +207,7 @@
             <section id="recunoastere">
                 <h2>Recunoaștere Internațională</h2>
                 <blockquote
-                    style="font-style: italic; border-left: 4px solid #b30000; padding-left: 15px; margin: 20px 0;">
+                    style="font-style: italic; border-left: 4px solid var(--main-color); padding-left: 15px; margin: 20px 0;">
                     "În cadrul ediției de anul acesta a <b>Galei Internaționale de Excelență Horeca</b>, am testat sute
                     de echipamente în condiții de stres extrem. Ustensilele profesionale Culinaro ne-au lăsat pur și simplu fără
                     cuvinte. Nu am mai întâlnit o asemenea simbioză între ergonomia perfectă și materialele de înaltă
@@ -197,104 +223,106 @@
             </section>
             <section id="orar">
                 <h2>Orar</h2>
-                <table id="tab-orar">
-                    <caption>Program de lucru și nivel estimat de aglomerație în showroom-ul Culinaro</caption>
-                    <thead>
+                <div class="container-tabel">
+                    <table id="tab-orar">
+                        <caption>Program de lucru și nivel estimat de aglomerație în showroom-ul Culinaro</caption>
+                        <thead>
 
-                        <tr>
-                            <th>Cod</th>
-                            <th>Perioadă</th>
-                            <th>Zi</th>
-                            <th>Interval dimineata</th>
-                            <th>Pauza de masa</th>
-                            <th>Interval seară</th>
-                            <th>Nivel aglomeratie</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td rowspan="5">Zile<br />Lucrătoare</td>
-                            <td>Luni</td>
-                            <td>10-12</td>
-                            <td>12-14</td>
-                            <td>14-20</td>
-                            <td>
-                                <meter min="0" max="100" low="40" high="80" optimum="10" value="25" title="25% - Liber">25%</meter>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
+                            <tr>
+                                <th>Cod</th>
+                                <th>Perioadă</th>
+                                <th>Zi</th>
+                                <th>Interval dimineata</th>
+                                <th>Pauza de masa</th>
+                                <th>Interval seară</th>
+                                <th>Nivel aglomeratie</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td rowspan="5">Zile<br />Lucrătoare</td>
+                                <td>Luni</td>
+                                <td>10-12</td>
+                                <td>12-14</td>
+                                <td>14-20</td>
+                                <td>
+                                    <meter min="0" max="100" low="40" high="80" optimum="10" value="25" title="25% - Liber">25%</meter>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
 
-                            <td>Marti</td>
-                            <td>9-12</td>
-                            <td>12-14</td>
-                            <td>14-21</td>
-                            <td>
-                                <meter min="0" max="100" low="40" high="80" optimum="10" value="65" title="65% - Moderat">65%</meter>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
+                                <td>Marti</td>
+                                <td>9-12</td>
+                                <td>12-14</td>
+                                <td>14-21</td>
+                                <td>
+                                    <meter min="0" max="100" low="40" high="80" optimum="10" value="65" title="65% - Moderat">65%</meter>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
 
-                            <td>Miercuri</td>
-                            <td>9-11</td>
-                            <td>11-13</td>
-                            <td>14-21</td>
-                            <td>
-                                <meter min="0" max="100" low="40" high="80" optimum="10" value="40" title="40% - Liber spre moderat">40%</meter>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
+                                <td>Miercuri</td>
+                                <td>9-11</td>
+                                <td>11-13</td>
+                                <td>14-21</td>
+                                <td>
+                                    <meter min="0" max="100" low="40" high="80" optimum="10" value="40" title="40% - Liber spre moderat">40%</meter>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
 
-                            <td>Joi</td>
-                            <td>9-11</td>
-                            <td>11-13</td>
-                            <td>14-21</td>
-                            <td>
-                                <meter min="0" max="100" low="40" high="80" optimum="10" value="85" title="85% - Aglomerat">85%</meter>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
+                                <td>Joi</td>
+                                <td>9-11</td>
+                                <td>11-13</td>
+                                <td>14-21</td>
+                                <td>
+                                    <meter min="0" max="100" low="40" high="80" optimum="10" value="85" title="85% - Aglomerat">85%</meter>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
 
-                            <td>Vineri</td>
-                            <td>9-12</td>
-                            <td>12-14</td>
-                            <td>14-19</td>
-                            <td>
-                                <meter min="0" max="100" low="40" high="80" optimum="10" value="95" title="95% - Foarte aglomerat">95%</meter>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td rowspan="2">Weekend</td>
-                            <td>Sambata</td>
-                            <td>10-12</td>
-                            <td>12-13</td>
-                            <td>13-16</td>
-                            <td>
-                                <meter min="0" max="100" low="40" high="80" optimum="10" value="55" title="55% - Moderat">55%</meter>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>Duminica</td>
-                            <td>10-14</td>
-                            <td>-</td>
-                            <td>inchis</td>
-                            <td>
-                                <meter min="0" max="100" value="0" title="Inchis">0%</meter>
-                            </td>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="7">Închis cu ocazia sărbătorilor legale, sau, când ne e mai lene așa.</td>
-                        </tr>
-                    </tfoot>
-                </table>
+                                <td>Vineri</td>
+                                <td>9-12</td>
+                                <td>12-14</td>
+                                <td>14-19</td>
+                                <td>
+                                    <meter min="0" max="100" low="40" high="80" optimum="10" value="95" title="95% - Foarte aglomerat">95%</meter>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td rowspan="2">Weekend</td>
+                                <td>Sambata</td>
+                                <td>10-12</td>
+                                <td>12-13</td>
+                                <td>13-16</td>
+                                <td>
+                                    <meter min="0" max="100" low="40" high="80" optimum="10" value="55" title="55% - Moderat">55%</meter>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Duminica</td>
+                                <td>10-14</td>
+                                <td>-</td>
+                                <td>inchis</td>
+                                <td>
+                                    <meter min="0" max="100" value="0" title="Inchis">0%</meter>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">Închis cu ocazia sărbătorilor legale.</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
                 <p><strong>Atentie!!!</strong> in prima zi a lunii facem inventar la stocuri.</p>
             </section>
             <section id="anunturi">
@@ -399,8 +427,8 @@
             </p>
             <br>
             <h3>Ghid Financiar: Calculul Amortizării (ROI)</h3>
-            <p>Pentru a evalua rentabilitatea achiziționării unui echipament premium din magazinul nostru, vă recomandăm să utilizați formula standard pentru calculul rentabilității investiției (Return on Investment):</p>
-            
+            <p>Pentru a evalua rentabilitatea achiziționării unui echipament premium din magazinul nostru, vă recomandăm să utilizați formula standard pentru calculul rentabilității investiției (Return on Investment):</p><br>
+            <div class="formula">
             <math display="block">
                 <mi>ROI</mi>
                 <mo>=</mo>
@@ -427,14 +455,28 @@
                 <mn>100</mn>
                 <mtext>%</mtext>
             </math>
-            
+            </div>
             <p><em>*Un ROI pozitiv într-un interval scurt de timp confirmă eficiența energetică și productivitatea superioară a utilajelor Culinaro.</em></p>
         </section>
+        <section id="date-site">
+            <h2>Date Site</h2>
+            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </section>
+        <section id="utilizatori-online">   
+            <h2>Utilizatori Online</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </section>
+        <section id="statistici-utilizatori">   
+            <h2>Statistici Utilizatori</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </section>>
     </div>
         <br><br>
     </main>
     <footer>
-        <a href="#">Înapoi sus</a>
+       <a href="#" id="link-top" title="Revino la începutul paginii">
+            <span class="sageata">&#8593;</span>
+        </a>
         <address>
             <b>Informații de contact Culinaro</b><br>
             Adresă Showroom:<br>
