@@ -1,0 +1,32 @@
+{
+  "name": "culinaro",
+  "version": "1.0.0",
+  "description": "magazin echipamente culinare",
+  "keywords": [
+    "bucatarie",
+    "ustensile",
+    "echipamente",
+    "culinare"
+  ],
+  "homepage": "https://github.com/pciprian29/Culinaro_TW#readme",
+  "bugs": {
+    "url": "https://github.com/pciprian29/Culinaro_TW/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pciprian29/Culinaro_TW.git"
+  },
+  "license": "ISC",
+  "author": "Petrescu Ciprian-Adrian",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "ejs": "^5.0.1",
+    "express": "^5.2.1",
+    "sass": "^1.99.0",
+    "sharp": "^0.34.5"
+  }
+}

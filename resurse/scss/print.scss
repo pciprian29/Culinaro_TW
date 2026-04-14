@@ -1,0 +1,117 @@
+@media print {
+    @page :left {
+        margin: 2cm 1cm 2cm 2cm;
+    }
+    @page :right {
+        margin: 2cm 2cm 2cm 1cm;
+    }
+    body {
+        background-color: white !important;
+        color: black !important;
+        position: static;
+    }
+    #banner-print {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 50%;
+        border: 4px double black;
+        text-align: center;
+        padding: 5px;
+        font-weight: bold;
+    }
+    img, video, iframe, canvas, svg, figure, .container-iframe, .taburi-iframe, #link-top, .hamburger-icon {
+        display: none !important;
+    }
+    #grid-pagina {
+        display: block !important;
+        > * {
+            display: block !important;
+            break-inside: avoid;
+            page-break-inside: avoid;
+            margin-bottom: 20px;
+            border: 1px solid black !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            padding: 15px !important;
+            width: auto !important;
+        }
+    }
+    a {
+        color: black !important;
+        text-decoration: none !important;
+        pointer-events: none;
+    }
+    h1 {
+        text-align: center;
+        margin-top: 50px;
+    }
+    header {
+        position: static !important;
+        height: auto !important;
+        background: transparent !important;
+    }
+    nav#meniu-principal {
+        background: transparent !important;
+        border: none !important;
+        break-after: page;
+        page-break-after: always;
+        ul.meniu-lista {
+            display: block !important;
+            position: static !important;
+            background: transparent !important;
+            clip-path: none !important;
+            li.meniu-item {
+                display: block;
+                text-align: left;
+                width: 100%;
+                border-bottom: 1px solid #ccc !important;
+                height: auto !important;
+                .text-meniu {
+                    display: inline !important;
+                }
+                &::after {
+                    display: none !important;
+                }
+                ul.submeniu {
+                    display: block !important;
+                    position: static !important;
+                    visibility: visible !important;
+                    opacity: 1 !important;
+                    transform: none !important;
+                    background: transparent !important;
+                    box-shadow: none !important;
+                    padding-left: 40px !important;
+                    border: none !important;
+                    animation: none !important;
+                    li {
+                        border-bottom: none !important;
+                    }
+                }
+            }
+        }
+    }
+    footer {
+        break-before: page;
+        page-break-before: always;
+        background: transparent !important;
+        color: black !important;
+        border-top: 1px solid black;
+    }
+    #watermark-print {
+        display: flex;
+        position: fixed;
+        top: 45%;
+        left: 20%;
+        width: 60%;
+        height: 10vh;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: 3rem;
+        font-weight: bold;
+        color: rgba(0, 0, 0, 0.3);
+        z-index: -100;
+    }
+}

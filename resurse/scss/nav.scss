@@ -1,0 +1,286 @@
+$latime-buton: 120px;
+$inaltime-buton: 30px;
+$culoare-text: white;
+ 
+%reset-lista {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+@mixin glassmorphism {
+    background-color: rgba(42, 54, 67, 0.3);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+@keyframes animatie_hamburger {
+    0% {
+        opacity: 0;
+        transform: translateX(-30px) scale(0.5); 
+        background-color: var(--main-color);
+    }
+    50% {
+        opacity: 0.5;
+        transform: translateX(10px) scale(1.1); 
+        background-color: var(--light-accent);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) scale(1); 
+        background-color: var(--light-shade);
+    }
+}
+ 
+#hamburger-check, label.hamburger-icon {
+    display: none; 
+}
+
+
+nav#meniu-principal {
+    @include glassmorphism;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+    padding: 15px 30px; 
+    border-radius: 0; 
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0; 
+    ul.meniu-lista {
+        @extend %reset-lista;
+        display: flex;
+        justify-content: center;
+        gap: 10px; 
+        @for $i from 1 through 5 {
+            li.meniu-item:nth-child(#{$i}) {
+                transition-delay: #{$i * 0.05}s; 
+            }
+        }
+
+        li.meniu-item {
+            position: relative;
+            font-weight: bold; 
+            width: $latime-buton;
+            height: $inaltime-buton;
+            line-height: $inaltime-buton;
+            text-align: center;
+            transition: all 1s linear;
+
+            a.link-principal {
+                display: block;
+                color: $culoare-text;
+                text-decoration: none;
+                width: 100%;
+                height: 100%;
+                transition: all 1s linear;
+                
+            } 
+
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: 20px; 
+                left: 0;
+                width: 100%;
+                height: 3px;
+                opacity: 0; 
+                transition: all 0.4s ease; 
+                pointer-events: none;
+                background: linear-gradient(to right, var(--dark-shade), var(--main-color), var(--dark-shade));
+            }
+
+            &:hover {
+                cursor: pointer; 
+                &::after {
+                    bottom: 0; 
+                    opacity: 1; 
+                }
+            }
+
+            ul.submeniu {
+                @extend %reset-lista;
+                position: absolute;
+                top: calc(100% + 15px); 
+                left: 0;
+                width: 100%;
+                z-index: 10; 
+            
+                @include glassmorphism;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 15px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: -15px;
+                    left: 0;
+                    width: 100%;
+                    height: 15px;
+                }
+            
+            visibility: hidden;
+            opacity: 0;
+            transform: scale(0, 0);
+            transform-origin: center center;
+            transition: transform 0.5s ease, opacity 0.5s ease, visibility 0.5s ease;
+                
+                li {
+                    width: 100%;
+                    height: $inaltime-buton;
+                    line-height: $inaltime-buton;
+                    
+                    a {
+                        display: block;
+                        color: $culoare-text;
+                        text-decoration: none;
+                        transition: background-color 0.3s;
+                    }
+                    
+                    &:hover {
+                        background-color: var(--culoare-contur);
+                        transition: transform 0.5s ease, background-color 0.5s ease; 
+                    }
+
+                &:first-child:hover { border-radius: 15px 15px 0 0; }
+                &:last-child:hover { border-radius: 0 0 15px 15px; }
+                }
+            }
+
+            &:hover > ul.submeniu {
+            visibility: visible;
+            opacity: 1;
+            transform: scale(1, 1);
+            }
+        }
+    }
+}
+
+
+// ecran mediu
+@media screen and (max-width: 1200px) {
+    nav#meniu-principal ul.meniu-lista li.meniu-item {
+        width: 100px; 
+        .text-meniu {
+            display: none; 
+        }
+        i {
+            font-size: 1.2rem; 
+        }
+    }
+}
+
+// ecran mic
+@media screen and (max-width: 700px) {
+    header {
+        background-color: rgba(25, 33, 41, 0.95); 
+        height: 65px; 
+        position: relative;
+        width: 100%;
+        z-index: 1000;
+    }
+    nav#meniu-principal {
+        background-color: var(--dark-shade);
+        box-shadow: none;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        border: none;
+        width: 100%;
+        padding: 0;
+    }
+    label.hamburger-icon {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 6px; 
+        color: var(--light-shade);
+        padding: 10px;
+        cursor: pointer;
+        position: absolute;
+        left: 20px;
+        top: 10px;
+
+        .line {
+            width: 25px;
+            height: 3px;
+            border-radius: 2px;
+            background-color: var(--light-shade);
+            margin: 0; 
+            
+            opacity: 0; 
+            animation: animatie_hamburger 0.8s ease-in-out forwards;
+        }
+
+        @for $i from 1 through 3 {
+            .line:nth-child(#{$i}) {
+                animation-delay: #{$i * 0.3}s; 
+            }
+        }
+    }
+    nav#meniu-principal ul.meniu-lista {
+        position: absolute;
+        top: 65px; 
+        left: 0;
+        width: 100%;
+        @include glassmorphism;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 0;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        
+        clip-path: circle(0% at 35px 25px); 
+        transition: clip-path 0.6s ease-in-out;
+        
+        li.meniu-item {
+            width: 100%;
+            height: auto;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
+
+            &:last-child{
+                border-bottom: none;
+            }
+
+            a.link-principal {
+                padding: 20px 0; 
+            }
+
+            &::after {
+                display: none;
+            }
+
+            ul.submeniu {
+                position: static;
+                animation: none; 
+                display: none;
+                visibility: visible;
+                opacity: 1;
+                transform: scale(1, 1);
+                transition: none;
+                
+                background-color: rgba(0, 0, 0, 0.25); 
+                border-radius: 0; 
+                box-shadow: inset 0 5px 15px rgba(0, 0, 0, 0.15);
+                
+                li {
+                    height: auto;
+                    a {
+                        padding: 15px 0;
+                        font-size: 0.95rem;
+                        color: var(--light-accent); 
+                    }
+                    &:hover { border-radius: 0; } 
+                }
+            }
+
+            &:hover > ul.submeniu {
+                display: block;
+            }
+        }
+    }
+
+    #hamburger-check:checked ~ ul.meniu-lista {
+        clip-path: circle(150% at 35px 25px);
+    }
+}
