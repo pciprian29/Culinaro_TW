@@ -349,6 +349,18 @@
                     name="ifr-video" title="YouTube video player" frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div><br><br>
+            <div class="video-vtt">
+                <video id="video-prezentare" controls preload="none" poster="/resurse/imagini/video-vtt-poster.png">
+        
+                    <source src="/resurse/video/video-vtt.mp4" type="video/mp4">
+                    <source src="/resurse/video/video-vtt.webm" type="video/webm">
+                    
+                    <track src="/resurse/video/tracks/track-romana.vtt" kind="subtitles" srclang="ro" label="Română" default>
+                    <track src="/resurse/video/tracks/track-engleza.vtt" kind="subtitles" srclang="en" label="English">
+                    
+                    Ne pare rău, browserul tău nu suportă afișarea videoclipurilor.
+                </video>
             </div>
         </section>
         <section id="resurse-utile">
@@ -407,6 +419,9 @@
         </section>
         <section id="statistici-utilizatori">   
             <h2>Statistici Utilizatori</h2>
+            <div class="user-info">
+                <p>Adresa ta de IP este: <strong><%= ip %></strong></p>
+            </div>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         </section>>
     </div>

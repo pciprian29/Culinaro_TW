@@ -1,197 +1,233 @@
-
-
-html{
-    font-size: 16px;
-    transition: font-size 0.5s linear;
+@charset "UTF-8";
+html {
+  font-size: 16px;
+  transition: font-size 0.5s linear;
 }
-body{
-    --culoare-fundal: #F1F2F0;
-    --culoare-contur: var(--main-color);
-    --margine-pagina: 100px;
-    --light-shade: #F1F2F0;
-    --light-accent: #94A2AD;
-    --main-color: #AB7941;
-    --dark-accent: #8C979D;
-    --dark-shade: #2A3643;
-    margin: 0; /* pentru a face imaginea din welcome cat intreaga pagina */
-    padding: 0;
-    background-color: var(--culoare-fundal);
-    overflow-x: hidden;
 
-    font-family: 'Mulish', sans-serif;
-
+body {
+  --culoare-fundal: #F1F2F0;
+  --culoare-contur: var(--main-color);
+  --margine-pagina: 100px;
+  --light-shade: #F1F2F0;
+  --light-accent: #94A2AD;
+  --main-color: #AB7941;
+  --dark-accent: #8C979D;
+  --dark-shade: #2A3643;
+  margin: 0; /* pentru a face imaginea din welcome cat intreaga pagina */
+  padding: 0;
+  background-color: var(--culoare-fundal);
+  overflow-x: hidden;
+  font-family: "Mulish", sans-serif;
 }
+
 h1, h2, h3, h4, h5, h6 {
-    font-weight: bold;
-    margin-top: 1.5rem;
-    margin-bottom: 1rem;
-    line-height: 1.2;
+  font-weight: bold;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
 }
 
-h1 { font-size: 2.5rem; }
-h2 { font-size: 2rem; color: var(--main-color); }
-h3 { font-size: 1.5rem; }
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+  color: var(--main-color);
+}
+
+h3 {
+  font-size: 1.5rem;
+}
 
 p {
-    margin-bottom: 1rem;
-    line-height: 1.6;
+  margin-bottom: 1rem;
+  line-height: 1.6;
 }
 
-b, strong { font-weight: bold; }
-i, em { font-style: italic; }
-s, del { text-decoration: line-through; }
-ins { text-decoration: underline; }
+b, strong {
+  font-weight: bold;
+}
+
+i, em {
+  font-style: italic;
+}
+
+s, del {
+  text-decoration: line-through;
+}
+
+ins {
+  text-decoration: underline;
+}
 
 a {
-    color: var(--main-color);
-    text-decoration: none;
-    transition: color 0.3s;
+  color: var(--main-color);
+  text-decoration: none;
+  transition: color 0.3s;
 }
+
 a:hover {
-    text-decoration: underline;
-    color: var(--culoare-contur);
+  text-decoration: underline;
+  color: var(--culoare-contur);
 }
 
 main ul {
-    list-style-type: disc;
-    margin-left: 2rem;
-    margin-bottom: 1rem;
+  list-style-type: disc;
+  margin-left: 2rem;
+  margin-bottom: 1rem;
 }
 
 main ol {
-    list-style-type: decimal;
-    margin-left: 2rem;
-    margin-bottom: 1rem;
+  list-style-type: decimal;
+  margin-left: 2rem;
+  margin-bottom: 1rem;
 }
 
 main li {
-    margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 img, picture, video, canvas, svg {
-    display: block;
-    max-width: 100%;
-    height: auto;
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
-header{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index:100;
-
-    /* background-color: rgba(255, 255, 255, 0.8); */
-    padding: 20px 30px;
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  box-sizing: border-box;
 }
 
-p{
-    /* border: 1px solid var(--culoare-fundal); */
+p {
+  /* border: 1px solid var(--culoare-fundal); */
 }
 
-
-main{
-    margin-left: var(--margine-pagina);
-    margin-right: var(--margine-pagina);
+#watermark-print, #banner-print {
+  display: none;
 }
 
+main {
+  margin-left: var(--margine-pagina);
+  margin-right: var(--margine-pagina);
+}
 
 #grid-pagina > * {
-    border:1px solid var(--culoare-contur);
-    box-shadow: 0px 0px 5px var(--culoare-contur);
-    padding: 10px;
-    border-radius: 20px;
-    min-width: 0;
-}
-#grid-pagina{
-    display: grid;
-    gap: 40px;
-    grid-template-columns: 2fr 1fr 2fr;
-    grid-template-areas: "welcome welcome welcome"
-                         "calendar-evenimente orar anunturi"
-                         "promotii produse index-intrebari"
-                         "recunoastere recunoastere recunoastere"
-                         "galerie-statica ghid-video resurse-utile"
-                         "date-site utilizatori-online statistici-utilizatori";
-                  
+  border: 1px solid var(--culoare-contur);
+  box-shadow: 0px 0px 5px var(--culoare-contur);
+  padding: 10px;
+  border-radius: 20px;
+  min-width: 0;
 }
 
- 
+#grid-pagina {
+  display: grid;
+  gap: 40px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-areas: "welcome  welcome welcome welcome" "calendar-evenimente orar orar anunturi" "promotii produse produse index-intrebari" "recunoastere  recunoastere recunoastere recunoastere" "galerie-statica ghid-video resurse-utile resurse-utile" "date-site date-site utilizatori-online statistici-utilizatori";
+}
+
 #welcome {
-    grid-area: welcome;
-    
-    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("../imagini/test1.png");
-    background-size: cover; 
-    background-position: center;
-    background-repeat: no-repeat;
-    
-    box-sizing: border-box;
-    box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.8) !important; 
-
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
-    
-    border-radius: 0 !important;
-    border: none !important;
-    padding: 0 !important;
-
-    min-height: 100vh; 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: white; 
-}
-#calendar-evenimente{
-    grid-area: calendar-evenimente;
-}
-#orar{
-    grid-area: orar;
-}
-#anunturi{
-    grid-area: anunturi;
-}
-#promotii{
-    grid-area: promotii;
-    background-color: var(--dark-shade);
-    color: var(--light-shade)
-}
-#produse{
-    grid-area: produse;
-}
-#index-intrebari{
-    grid-area: index-intrebari;
-}
-#recunoastere{
-    grid-area: recunoastere;
-}
-#date-site{
-    grid-area: date-site;
-}
-#utilizatori-online{
-    grid-area: utilizatori-online;
-    background-color: var(--dark-shade);
-    color: var(--light-shade);
-}
-#statistici-utilizatori{
-    grid-area: statistici-utilizatori;
-}
-#galerie-statica{
-    grid-area: galerie-statica;
-}
-#ghid-video{
-    grid-area: ghid-video;
-}
-#resurse-utile{
-    grid-area: resurse-utile;
-}
-figure{
-    margin: 0;
+  grid-area: welcome;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../imagini/test1.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+  box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.8) !important;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  border-radius: 0 !important;
+  border: none !important;
+  padding: 0 !important;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
 }
 
-figure.fg-img > img{
-    width:100%;
+#welcome h1 {
+  font-size: 3rem;
+  color: var(--main-color);
+  margin: 0;
+}
+
+#welcome .subtitlu {
+  font-size: 1.5rem;
+  color: var(--light-accent);
+  margin-top: 10px;
+  text-align: center;
+}
+
+#calendar-evenimente {
+  grid-area: calendar-evenimente;
+}
+
+#orar {
+  grid-area: orar;
+}
+
+#anunturi {
+  grid-area: anunturi;
+}
+
+#promotii {
+  grid-area: promotii;
+  background-color: var(--dark-shade);
+  color: var(--light-shade);
+}
+
+#produse {
+  grid-area: produse;
+}
+
+#index-intrebari {
+  grid-area: index-intrebari;
+}
+
+#recunoastere {
+  grid-area: recunoastere;
+}
+
+#date-site {
+  grid-area: date-site;
+}
+
+#utilizatori-online {
+  grid-area: utilizatori-online;
+  background-color: var(--dark-shade);
+  color: var(--light-shade);
+}
+
+#statistici-utilizatori {
+  grid-area: statistici-utilizatori;
+}
+
+#galerie-statica {
+  grid-area: galerie-statica;
+}
+
+#ghid-video {
+  grid-area: ghid-video;
+}
+
+#resurse-utile {
+  grid-area: resurse-utile;
+}
+
+figure {
+  margin: 0;
+}
+
+figure.fg-img > img {
+  width: 100%;
 }
 
 .bonbon-regular {
@@ -201,230 +237,295 @@ figure.fg-img > img{
 }
 
 .container-iframe {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
-
 
 .container-iframe iframe {
-    width: 100%; 
-    max-width: 100%; 
-    aspect-ratio: 16 / 9; 
-    height: auto; 
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 16/9;
+  height: auto;
 }
-.taburi-iframe{
-    display: flex;
-    flex-direction: row;
-    align-items:stretch;
-    min-width: 0;
-    width: 100%;
-    /* border: 1px solid var(--culoare-contur); */
-    
-}
-.taburi-iframe > a{
-    display: inline-block;
-    padding: 10px;
-    background-color: var(--culoare-fundal);
-    border: 1px solid var(--main-color);
-    color: black;
-    text-decoration: none;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    /* margin-right: 10px; */
-    transition: all 1s linear;
-    flex: 1; 
-    text-align: center; 
-    box-sizing: border-box; 
 
-    min-width: 0;
+.taburi-iframe {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  min-width: 0;
+  width: 100%;
+  /* border: 1px solid var(--culoare-contur); */
 }
-.taburi-iframe > a:hover{
-    background-color: var(--culoare-contur);
-    color: white;
+
+.taburi-iframe > a {
+  display: inline-block;
+  padding: 10px;
+  background-color: var(--culoare-fundal);
+  border: 1px solid var(--main-color);
+  color: black;
+  text-decoration: none;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  /* margin-right: 10px; */
+  transition: all 1s linear;
+  flex: 1;
+  text-align: center;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.taburi-iframe > a:hover {
+  background-color: var(--culoare-contur);
+  color: white;
 }
 
 footer {
-    margin-top: 20px;
-    padding: 20px;
-    text-align: center;
-    background-color: var(--dark-shade);
-    color: var(--light-shade);
+  margin-top: 20px;
+  padding: 20px;
+  text-align: center;
+  background-color: var(--dark-shade);
+  color: var(--light-shade);
 }
+
 #link-top {
-    position: fixed;
-    bottom: 0.3em;
-    left: 0.3em;
-    width: 3rem;
-    height: 3rem;
-    box-sizing: border-box;
-    border-radius: 50%;
-    background: rgb(220, 220, 220);
-    text-align: center;
-    line-height: 2.3rem; 
-    text-decoration: none; 
-
-   
-    border: 5px solid var(--light-accent); 
-    border-top-color: var(--dark-shade); 
-    border-bottom-color: var(--dark-shade); 
-    
-   
-    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.6);
-
-    
-    opacity: 0.5;
-    transition: all 0.5s linear;
+  position: fixed;
+  bottom: 0.3em;
+  left: 0.3em;
+  width: 3rem;
+  height: 3rem;
+  box-sizing: border-box;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  opacity: 0.5;
+  transition: opacity 0.5s linear;
+  z-index: 1;
 }
 
+#link-top::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border-radius: 50%;
+  background: rgb(220, 220, 220);
+  border: 5px solid var(--light-accent);
+  border-top-color: var(--dark-shade);
+  border-bottom-color: var(--dark-shade);
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.6);
+  transition: transform 0.5s linear;
+  z-index: -1;
+}
 
 #link-top:hover {
-    opacity: 1; 
-    transform: rotate(360deg); 
+  opacity: 1;
 }
 
+#link-top:hover::before {
+  transform: rotate(360deg);
+}
 
-#sageata{
-    display: inline-block;
-    font-size: 3rem;
-    font-weight: bold;
-    color: var(--dark-shade); 
-    
-    filter: blur(2px);
-    
-    transition: all 0.5s linear;
+#sageata {
+  display: inline-block;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--dark-shade);
+  filter: blur(2px);
+  transition: filter 0.5s linear;
 }
 
 #link-top:hover #sageata {
-    filter: blur(0); 
-    transform: rotate(-360deg); 
+  filter: blur(0);
 }
-
 
 /* stilizare tabel orar */
-.container-tabel{
-    width: 100%;
-    overflow-x: auto; 
+.container-tabel {
+  width: 100%;
+  overflow-x: auto;
 }
-#tab-orar{
-    width: 100%;
-    border-collapse: collapse;
-    background-color: transparent;
+
+#tab-orar {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: transparent;
 }
-#tab-orar caption{
-    caption-side: bottom;
-    padding: 10px;
-    font-weight: bold;
-    color: var(--dark-shade);
+
+#tab-orar caption {
+  caption-side: bottom;
+  padding: 10px;
+  font-weight: bold;
+  color: var(--dark-shade);
 }
-#tab-orar th, #tab-orar td{
-    border: 1px solid var(--culoare-contur);
-    padding: 8px;
-    text-align: center;
-    background-color: transparent;
-    transition: font-size 0.7s linear;
+
+#tab-orar th, #tab-orar td {
+  border: 1px solid var(--culoare-contur);
+  padding: 8px;
+  text-align: center;
+  background-color: transparent;
+  transition: font-size 0.7s linear;
 }
-#tab-orar thead{
-    border:3px solid var(--main-color);
-    background-color: var(--dark-shade);
-    color:var(--light-shade);
+
+#tab-orar thead {
+  border: 3px solid var(--main-color);
+  background-color: var(--dark-shade);
+  color: var(--light-shade);
 }
-#tab-orar tbody tr:nth-child(even){
-    background-color: var(--dark-accent);
-    box-shadow: 0px 0px 5px var(--culoare-contur);
+
+#tab-orar tbody tr:nth-child(even) {
+  background-color: var(--dark-accent);
+  box-shadow: 0px 0px 5px var(--culoare-contur);
 }
-#tab-orar tbody tr:nth-child(odd){
-    background-color: transparent;
+
+#tab-orar tbody tr:nth-child(odd) {
+  background-color: transparent;
 }
 
 #tab-orar tbody tr {
-    transition: background-color 0.75s ease; 
+  transition: background-color 0.75s ease;
 }
 
 #tab-orar tbody tr:hover {
-    background-color: var(--dark-shade); 
+  background-color: var(--dark-shade);
 }
 
 #tab-orar tbody tr:hover td {
-    font-size: 120%;
-    color:var(--light-shade) 
+  font-size: 120%;
+  color: var(--light-shade);
 }
 
 #tab-orar tfoot td {
-    font-style: italic;
-    background-color: var(--light-shade);
+  font-style: italic;
+  background-color: var(--light-shade);
 }
 
 /* stilizare formula mathml */
-
 .formula {
-    background-color: var(--light-shade);
-    padding: 20px;
-    border-radius: 15px;
-    text-align: center;
-    overflow-x: auto;
-    box-shadow: 0px 0px 5px var(--culoare-contur);
-    margin: 20px 0;
+  background-color: var(--light-shade);
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  overflow-x: auto;
+  box-shadow: 0px 0px 5px var(--culoare-contur);
+  margin: 20px 0;
 }
+
 .formula math {
-    font-family: 'Times New Roman', serif;
-    font-size: 1.8rem;
+  font-family: "Times New Roman", serif;
+  font-size: 1.8rem;
 }
+
 .formula math mi {
-    color: var(--dark-shade);
-    font-weight: bold;
-    font-style: normal; 
+  color: var(--dark-shade);
+  font-weight: bold;
+  font-style: normal;
 }
+
 .formula math mtext {
-    color: var(--dark-accent);
-    font-style: italic; 
-    font-size: 0.8em; 
+  color: var(--dark-accent);
+  font-style: italic;
+  font-size: 0.8em;
 }
+
 .formula math mo {
-    color: var(--main-color);
-    font-weight: bold;
-    font-size: 1.2em;
+  color: var(--main-color);
+  font-weight: bold;
+  font-size: 1.2em;
 }
+
 .formula math mn {
-    color: #F05B1D;
-    font-weight: 900;
-    text-decoration: underline; 
+  color: #F05B1D;
+  font-weight: 900;
+  text-decoration: underline;
 }
 
-@media screen and (max-width:1200px) {
-    html{
-        font-size: 15px;
-    }
-    body{
-        --margine-pagina:80px;
-    }
-
-    #grid-pagina{
-        grid-template-columns: 1fr 1fr; /* repeat(2, 1fr) */
-        grid-template-areas: "welcome welcome"
-                            "calendar-evenimente orar"
-                            "anunturi promotii"
-                            "produse index-intrebari"
-                            "recunoastere recunoastere"
-                            "date-site utilizatori-online"
-                            "galerie-statica statistici-utilizatori"
-                            "resurse-utile ghid-video";
-    }
+.video-vtt {
+  text-align: center;
+  margin: 30px 0;
+}
+.video-vtt #video-prezentare {
+  width: 80%;
+  min-width: 300px;
+  max-width: 900px;
+  border: 2px solid var(--culoare-text, #333);
+  border-radius: 8px;
+  background-color: #000;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-@media screen and (max-width:700px) {
-    html{
-        font-size: 14px;
-    }
+#video-prezentare::cue {
+  background-color: transparent !important;
+  color: white !important;
+  text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000, 0px 3px 5px #000 !important;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
 
-    body{
-        --margine-pagina: 15px; 
-    }
+a:visited {
+  color: var(--dark-shade);
+}
 
-    #grid-pagina{
-        display: flex; /*ca sa nu se suprapuna elementele, ci sa fie unul sub altul */
-        flex-direction: column;
-        gap: 30px; 
-    }
+a[href^=http]::before {
+  content: "⮳ ";
+  font-size: 1.5em;
+  display: inline-block;
+  vertical-align: middle;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+a[href^=http]:hover::before {
+  color: var(--main-color);
+}
+
+main a {
+  border: 2px solid transparent;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background-image: radial-gradient(var(--culoare-pata-hover, rgba(255, 150, 0, 0.4)) 0%, var(--culoare-pata-hover, rgba(255, 150, 0, 0.4)) 40%, transparent 80%, transparent 100%);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 0% 0%;
+  transition: background-size 0.4s ease-out;
+}
+main a:hover {
+  background-size: 100% 100%;
+}
+main a:active {
+  border-color: var(--culoare-contur, black);
+}
+
+@media screen and (max-width: 1200px) {
+  html {
+    font-size: 15px;
+  }
+  body {
+    --margine-pagina:80px;
+  }
+  #grid-pagina {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "welcome welcome" "calendar-evenimente orar" "anunturi promotii" "produse index-intrebari" "recunoastere recunoastere" "date-site utilizatori-online" "galerie-statica statistici-utilizatori" "resurse-utile ghid-video";
+  }
+}
+@media screen and (max-width: 700px) {
+  html {
+    font-size: 14px;
+  }
+  body {
+    --margine-pagina: 15px;
+  }
+  #grid-pagina {
+    display: flex; /*ca sa nu se suprapuna elementele, ci sa fie unul sub altul */
+    flex-direction: column;
+    gap: 30px;
+  }
+  #welcome {
+    width: auto;
+    margin-right: calc(-1 * var(--margine-pagina));
+  }
 }

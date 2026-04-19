@@ -53,9 +53,9 @@ function initErori(){
     let continut = fs.readFileSync(path.join(__dirname,"resurse/json/erori.json")).toString("utf-8");
     let erori=obGlobal.obErori=JSON.parse(continut)
     let err_default=erori.eroare_default
-    err_default.imagine=path.join(erori.cale_baza, err_default.imagine)
+    err_default.imagine= erori.cale_baza + "/" + err_default.imagine;
     for (let eroare of erori.info_erori){
-        eroare.imagine=path.join(erori.cale_baza, eroare.imagine)
+        eroare.imagine= erori.cale_baza + "/" + eroare.imagine;
     }
 
 }
@@ -73,6 +73,9 @@ function afisareEroare(res, identificator, titlu, text, imagine){
     let errDefault= obGlobal.obErori.eroare_default;
     if(eroare?.status)
         res.status(eroare.identificator)
+   
+    console.log("Calea imaginii de eroare este:", imagine || eroare?.imagine || errDefault.imagine); // debugging
+    
     res.render("pagini/eroare",{
         imagine: imagine || eroare?.imagine || errDefault.imagine,
         titlu: titlu || eroare?.titlu || errDefault.titlu,
