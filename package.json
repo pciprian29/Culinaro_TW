@@ -6,7 +6,13 @@
     "bucatarie",
     "ustensile",
     "echipamente",
-    "culinare"
+    "culinare",
+    "magazin",
+    "ecommerce",
+    "magazin-online",
+    "horeca",
+    "gastronomie",
+    "gatit"
   ],
   "homepage": "https://github.com/pciprian29/Culinaro_TW#readme",
   "bugs": {
