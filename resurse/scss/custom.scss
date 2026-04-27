@@ -1,0 +1,35 @@
+@use '../../node_modules/bootstrap/scss/bootstrap.scss' with 
+(
+    // culori background
+    $primary: red,
+    $secondary: purple,
+
+    // culori font
+    $primary-text-emphasis: white,
+    $body-color: #222222,
+
+    // dimensiuni ecran
+    $grid-breakpoints: (
+        xs: 0,
+        sm: 576px,
+        md: 820px,  /* Customizat (standard e 768px) */
+        lg: 1050px, /* Customizat (standard e 992px) */
+        xl: 1200px,
+        xxl: 1400px
+    ),
+
+    //dimensiune raze border
+    $border-radius: 12px,
+    $border-radius-sm: 8px,
+    $border-radius-lg: 20px,
+
+    // dimensiunea literelor headingurilor
+    $h1-font-size: 3.5rem,
+    $h2-font-size: 2.5rem,
+
+    // familie font implicita
+    $font-family-base: ('Segoe UI', Tahoma, Geneva, Verdana, sans-serif),
+
+    // variabila extra
+    $enable-shadows: true
+)

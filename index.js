@@ -20,7 +20,7 @@ const obGlobal={
 
 console.log("Folder index.js", __dirname);
 console.log("Folder curent (de lucru)", process.cwd());
-console.log("Cale fisier", __filename);
+console.log("Cale cale_imagine", __filename);
 
 let vect_foldere=[ "temp", "logs", "backup", "fisiere_uploadate" ]
 for (let folder of vect_foldere){
@@ -31,19 +31,44 @@ for (let folder of vect_foldere){
 }
 
 app.use("/resurse",express.static(path.join(__dirname, "resurse")));
+app.use("/dist",express.static(path.join(__dirname, "/node_modules/bootstrap/dist")));
 
 app.get("/favicon.ico", function(req, res){
     res.sendFile(path.join(__dirname,"resurse/imagini/favicon/favicon.ico"))
 });
 
 app.get(["/", "/index","/home"], function(req, res){
+    let sfertCurent = (Math.floor(new Date().getMinutes() / 15) + 1).toString(); // "1", "2", "3" sau "4"
+    
+    // Filtrăm server-side doar imaginile pentru sfertul curent
+    let imaginiFiltrate = obGlobal.obImagini.imagini.filter(imag => imag.sfert_ora === sfertCurent);
+    
+    // Trunchiem lista la un maxim de 10 imagini
+    if (imaginiFiltrate.length > 10) {
+        imaginiFiltrate = imaginiFiltrate.slice(0, 10);
+    }
+    
     res.render("pagini/index", {
-        ip: req.ip
+        ip: req.ip,
+        imagini : imaginiFiltrate
     });
 });
 
 app.get("/despre", function(req, res){
     res.render("pagini/despre");
+});
+
+app.get("/galerie", function(req, res){
+    let sfertCurent = (Math.floor(new Date().getMinutes() / 15) + 1).toString();
+    
+    let imaginiFiltrate = obGlobal.obImagini.imagini.filter(imag => imag.sfert_ora === sfertCurent);
+    if (imaginiFiltrate.length > 10) {
+        imaginiFiltrate = imaginiFiltrate.slice(0, 10);
+    }
+
+    res.render("pagini/galerie", {
+        imagini : imaginiFiltrate
+    });
 });
 
 
@@ -68,7 +93,7 @@ function afisareEroare(res, identificator, titlu, text, imagine){
         elem.identificator == identificator
     )
     //daca sunt setate titlu, text, imagine, le folosim, 
-    //altfel folosim cele din fisierul json pentru eroarea gasita
+    //altfel folosim cele din cale_imagineul json pentru eroarea gasita
     //daca nu o gasim, afisam eroarea default
     let errDefault= obGlobal.obErori.eroare_default;
     if(eroare?.status)
@@ -90,30 +115,42 @@ app.get("/eroare", function(req, res){
 });
 
 
-// function initImagini(){
-//     var continut= fs.readFileSync(path.join(__dirname,"resurse/json/galerie.json")).toString("utf-8");
+function initImagini(){
+    var continut= fs.readFileSync(path.join(__dirname,"resurse/json/galerie.json")).toString("utf-8");
 
-//     obGlobal.obImagini=JSON.parse(continut);
-//     let vImagini=obGlobal.obImagini.imagini;
-//     let caleGalerie=obGlobal.obImagini.cale_galerie
+    obGlobal.obImagini=JSON.parse(continut);
+    let vImagini=obGlobal.obImagini.imagini;
+    let caleGalerie=obGlobal.obImagini.cale_galerie
 
-//     let caleAbs=path.join(__dirname,caleGalerie);
-//     let caleAbsMediu=path.join(caleAbs, "mediu");
-//     if (!fs.existsSync(caleAbsMediu))
-//         fs.mkdirSync(caleAbsMediu);
-    
-//     for (let imag of vImagini){
-//         [numeFis, ext]=imag.fisier.split("."); //"ceva.png" -> ["ceva", "png"]
-//         let caleFisAbs=path.join(caleAbs,imag.fisier);
-//         let caleFisMediuAbs=path.join(caleAbsMediu, numeFis+".webp");
-//         sharp(caleFisAbs).resize(300).toFile(caleFisMediuAbs);
-//         imag.fisier_mediu=path.join("/", caleGalerie, "mediu", numeFis+".webp" )
-//         imag.fisier=path.join("/", caleGalerie, imag.fisier )
+    let caleAbs=path.join(__dirname,caleGalerie);
+    let caleAbsMediu=path.join(caleAbs, "mediu");
+    if (!fs.existsSync(caleAbsMediu))
+        fs.mkdirSync(caleAbsMediu);
         
-//     }
-//     // console.log(obGlobal.obImagini)
-// }
-// initImagini();
+    let caleAbsMic=path.join(caleAbs, "mic");
+    if (!fs.existsSync(caleAbsMic))
+        fs.mkdirSync(caleAbsMic);
+    
+    for (let imag of vImagini){
+        let [numeFis, ext]=imag.cale_imagine.split("."); //"ceva.png" -> ["ceva", "png"]
+        let caleFisAbs=path.join(caleAbs,imag.cale_imagine);
+        let caleFisMediuAbs=path.join(caleAbsMediu, numeFis+".webp");
+        let caleFisMicAbs=path.join(caleAbsMic, numeFis+".webp");
+        
+        if(!fs.existsSync(caleFisMediuAbs)){
+            sharp(caleFisAbs).resize(400).toFile(caleFisMediuAbs).catch(err => console.error("Eroare sharp mediu:", err));
+        }
+        if(!fs.existsSync(caleFisMicAbs)){
+            sharp(caleFisAbs).resize(200).toFile(caleFisMicAbs).catch(err => console.error("Eroare sharp mic:", err));
+        }
+        imag.cale_imagine_mediu="/" + caleGalerie + "mediu/" + numeFis+".webp";
+        imag.cale_imagine_mic="/" + caleGalerie + "mic/" + numeFis+".webp";
+        imag.cale_imagine="/" + caleGalerie + imag.cale_imagine;
+        
+    }
+    // console.log(obGlobal.obImagini)
+}
+initImagini();
 
 
 function compileazaScss(caleScss, caleCss){
@@ -147,8 +184,8 @@ function compileazaScss(caleScss, caleCss){
 
 
 //la pornirea serverului
-vFisiere=fs.readdirSync(obGlobal.folderScss);
-for( let numeFis of vFisiere ){
+let vfisiere=fs.readdirSync(obGlobal.folderScss);
+for( let numeFis of vfisiere ){
     if (path.extname(numeFis)==".scss"){
         compileazaScss(numeFis);
     }

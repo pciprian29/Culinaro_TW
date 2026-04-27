@@ -1,0 +1,83 @@
+{
+    "cale_galerie": "resurse/imagini/galerie/",
+    "imagini": [
+        {
+        "cale_imagine":"galerie-statica1.jpg",
+        "titlu":"Ustensile metal",
+        "descriere":"Ustensile de bucătărie din metal de înaltă calitate.",
+        "sfert_ora":"3"
+        },
+        {
+        "cale_imagine":"galerie-statica2.jpg",
+        "titlu": "Echipamente catering",
+        "descriere": "Echipamente catering de înaltă calitate pentru evenimente reușite.",
+        "sfert_ora": "3"
+        },
+        {
+        "cale_imagine":"galerie-statica3.jpg",
+        "titlu": "Accesorii gratar",
+        "descriere": "Accesorii pentru un grătar de înaltă calitate.",
+        "sfert_ora": "3"
+        },
+        {
+        "cale_imagine":"galerie-statica4.jpg",
+        "titlu": "Echipamente cafenea",
+        "descriere": "Echipamente pentru o cafenea reusita.",
+        "sfert_ora": "3"
+        },
+        {
+        "cale_imagine":"galerie-statica5.jpg",
+        "titlu": "Uleiuri tocatoare",
+        "descriere": "Uleiuri de înaltă calitate pentru tocatoare.",
+        "sfert_ora": "3"
+        },
+        {
+        "cale_imagine":"galerie-statica6.jpg",
+        "titlu": "Gratar suport pe ambele parti",
+        "descriere": "Gratar cu suport pe ambele părți pentru o experiență de gătit versatilă.",
+        "sfert_ora": "3"
+        },
+        {
+        "cale_imagine":"galerie-statica7.jpg",
+        "titlu": "Mixere profesionale",
+        "descriere": "Mixere de înaltă calitate pentru utilizare profesională.",
+        "sfert_ora": "3"
+        },
+        {
+        "cale_imagine":"galerie-statica8.jpg",
+        "titlu": "Ustensile generale",
+        "descriere": "Ustensile de bucătărie generale de înaltă calitate.",
+        "sfert_ora": "3"
+        },
+        {
+        "cale_imagine":"galerie-statica9.jpg",
+        "titlu": "Ustensile inox",
+        "descriere": "Ustensile de bucătărie din inox de înaltă calitate.",
+        "sfert_ora": "3"   
+        },
+        {
+        "cale_imagine":"galerie-statica10.jpg",
+        "titlu": "Tigai și cratițe",
+        "descriere": "Tigai și cratițe de înaltă calitate pentru gătit.",
+        "sfert_ora": "3"
+        },
+        {
+        "cale_imagine":"galerie-statica11.jpg",
+        "titlu": "Rafturi patiserie",
+        "descriere": "Rafturi de patiserie pentru o organizare eficientă.",
+        "sfert_ora": "3"
+        },
+        {
+        "cale_imagine":"galerie-statica13.jpg",
+        "titlu": "Solutii depozitare catering",
+        "descriere": "Solutii de depozitare pentru echipamentele de catering.",
+        "sfert_ora": "4"
+        },
+        {
+        "cale_imagine":"galerie-statica13.jpg",
+        "titlu": "Solutii organizare bucatarie",
+        "descriere": "Solutii pentru o organizare eficientă a bucătăriei.",
+        "sfert_ora": "3"
+        }
+    ]
+}

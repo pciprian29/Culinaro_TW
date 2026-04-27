@@ -26,6 +26,9 @@ nav#meniu-principal ul.meniu-lista li.meniu-item ul.submeniu, nav#meniu-principa
 }
 
 nav#meniu-principal {
+  position: absolute;
+  top: 0;
+  z-index: 1000;
   background-color: rgba(42, 54, 67, 0.3);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);

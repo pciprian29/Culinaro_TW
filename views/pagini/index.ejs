@@ -12,9 +12,7 @@
 </head>
 
 <body>
-    <header>
         <%- include("../fragmente/header.ejs") %>
-    </header>
     <main>
         <div id="grid-pagina">
             <section id="welcome">
@@ -22,8 +20,9 @@
                     <h1>Culinaro - Magazin echipamente culinare</h1>
                     <p class="subtitlu">Prezentarea magazinului</p>
                 </hgroup>
-                <br><br><br><br>
+                <br><br><br>
             <p class="intro">Vă mulțumim că ne vizitați site-ul.</p>
+            <p><button class="btn btn-primary">Buton Bootstrap</button></p>
             </section>
             <section id="promotii">
                 <h2>Promoții și oferte aparatură bucătărie</h2>
@@ -294,42 +293,8 @@
                 </details>
             </section>
 
-        <section id="galerie-statica">
-            <h2>Galerie</h2>
-            <div id="grid-galerie">
-                <figure>
-                    <a href="resurse/imagini/galerie1.jpg" title="Apasă pentru versiunea mărită">
-                        <picture>
-                            <source srcset="resurse/imagini/galerie1-mic.jpg" media="(max-width: 600px)">
-                            <source srcset="resurse/imagini/galerie1-mediu.jpg" media="(max-width: 1000px)">
-                            <img src="resurse/imagini/galerie1.jpg" alt="Ustensile bucatarie" title="Set premium de ustensile pentru chefi" style="width: 30%; height: auto;">
-                        </picture>
-                    </a>
-                    <figcaption>Ustensile bucatarie</figcaption>
-                </figure>
-                <figure>
-                    <img src="resurse/imagini/galerie2.jpg" alt="echipament2" style="width: 30%;height: 30%;">
-                    <figcaption>Chafing dish</figcaption>
-                </figure>
-                <figure>
-                    <img src="resurse/imagini/galerie3.jpg" alt="echipament3" style="width: 30%;height: 30%;">
-                    <figcaption>Tavi gastronorm</figcaption>
-                </figure>
-                <figure>
-                    <img src="resurse/imagini/galerie4.jpg" alt="echipament4" style="width: 30%;height: 30%;">
-                    <figcaption>Echipamente cafenea</figcaption>
-                </figure>
-                <figure>
-                    <img src="resurse/imagini/galerie5.jpg" alt="echipament5" style="width: 30%;height: 30%;">
-                    <figcaption>Echipamente termice</figcaption>
-                </figure>
-                <figure>
-                    <img src="resurse/imagini/galerie6.jpg" alt="echipament6" style="width: 30%;height: 30%;">
-                    <figcaption>Echipamente gratar</figcaption>
-                </figure>
+        <%- include("../fragmente/galerie_statica.ejs") %>
 
-            </div>
-        </section>
         <section id="ghid-video">
             <h2>Ghiduri Video</h2>
             <p>Dacă doriți să vă faceți singuri mentenanța utilajelor vă recomandăm următoarele ghiduri simple pe care

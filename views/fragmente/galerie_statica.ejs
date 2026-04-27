@@ -1,0 +1,20 @@
+<section id="galerie-statica">
+    <h2>Galerie</h2>
+    <div id="grid-galerie">
+        <% for(let imag of locals.imagini) { %>
+            <figure>
+                <picture>
+                    <source srcset="<%= imag.cale_imagine_mic %>" media="(max-width: 700px)">
+                    <source srcset="<%= imag.cale_imagine_mediu %>" media="(max-width: 1200px)">
+                    <img src="<%= imag.cale_imagine %>" alt="<%- imag.alt || imag.titlu %>" title="<%- imag.descriere %>">
+                </picture>
+                <figcaption>
+                    <%- imag.descriere %>
+                    <% if(imag.autor && imag.link_licenta) { %>
+                        <br><small>Imagine de <%- imag.autor %>, sub licență <a href="<%- imag.link_licenta %>" target="_blank">CC-BY</a></small>
+                    <% } %>
+                </figcaption>
+            </figure>
+        <% } %>
+    </div>
+</section>
