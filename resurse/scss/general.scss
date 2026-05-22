@@ -12,13 +12,26 @@ body{
     --main-color: #AB7941;
     --dark-accent: #8C979D;
     --dark-shade: #2A3643;
+    --culoare-text: #222222;
     margin: 0; /* pentru a face imaginea din welcome cat intreaga pagina */
     padding: 0;
     background-color: var(--culoare-fundal);
+    color: var(--culoare-text);
     overflow-x: hidden;
 
     font-family: 'Mulish', sans-serif;
 
+}
+
+body.dark {
+    --culoare-fundal: #1a1e24;
+    --culoare-contur: var(--main-color);
+    --light-shade: #2A3643;
+    --light-accent: #8C979D;
+    --main-color: #d4a373;
+    --dark-accent: #94A2AD;
+    --dark-shade: #F1F2F0;
+    --culoare-text: #F1F2F0;
 }
 h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
@@ -238,6 +251,10 @@ main{
     border-width: 4px;
 }
 
+#grid-galerie figure:hover{
+    border:4px solid var(--main-color);
+}
+
 @property --unda {
     syntax: '<length>';
     inherits: false;
@@ -249,7 +266,7 @@ main{
 	left:0;
 	top:100%;
 	transform-origin:0 0;
-	/*conetaza ordinea transformarilor!*/
+
 	transform: rotateX(180deg) skew(-45deg) scaleY(0.5) translate(10px,-25px); 
 	opacity:0.55;
 

@@ -1,3 +1,4 @@
+<header>
 <nav id="meniu-principal">
     <label class="hamburger-icon" for="hamburger-check">
         <div class="line"></div>
@@ -17,12 +18,14 @@
             </ul>
         </li>
         <li class="meniu-item">
-            <a href="#" class="link-principal"><span class="text-meniu">Produse</span> <i class="fas fa-solid fa-book"></i></a>
+            <a href="/produse" class="link-principal"><span class="text-meniu">Produse</span> <i class="fas fa-solid fa-book"></i></a>
             <ul class="submeniu">
-                <li><a href="#">Toate</a></li>
-                <li><a href="#">Termice</a></li>
-                <li><a href="#">Frigorifice</a></li>
-                <li><a href="#">Dinamice</a></li>
+                <li><a href="/produse">Toate</a></li>
+                <% if(locals.optiuniMeniu) { %>
+                    <% for (let opt of locals.optiuniMeniu) { %>
+                        <li><a href="/produse?tip=<%- opt.unnest %>"><%- opt.unnest.charAt(0).toUpperCase() + opt.unnest.slice(1) %></a></li>
+                    <% } %>
+                <% } %>
             </ul>
         </li>
         <li class="meniu-item">
@@ -31,10 +34,16 @@
                 <li><a href="/despre#prezentare">Prezentare</a></li>
                 <li><a href="/despre#istoric">Istoric</a></li>
                 <li><a href="/despre#motivatie">Motivație</a></li>
-                <li><a href="/despre#galerie">Galerie</a></li>
+                <li><a href="/galerie">Galerie</a></li>
             </ul>
         </li>
         
         <li class="meniu-item"><a href="#" class="link-principal"><span class="text-meniu">Contact</span> <i class="fa-regular fa-envelope"></i></a></li>
+        <li class="meniu-item">
+            <button id="btn-tema" title="Schimbă tema" style="position: relative; z-index: 1000; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--light-shade); padding-top: 2px;">
+                <i class="fas fa-moon" id="icon-tema"></i>
+            </button>
+        </li>
     </ul>
 </nav>
+</header>

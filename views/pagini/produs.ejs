@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html  lang="ro">
+    <head>
+        <meta name="description" content="Culinaro ofera echipamente profesionale HoReCa, ustensile si accesorii pentru bucatarii de top.">
+        <meta name="keywords" content="HoReCa, echipamente, bucatarie, Culinaro, <%- locals.prod.nume %>">
+        
+        <title>Culinaro - <%- locals.prod.nume %></title>
+        <%- include("../fragmente/head") %>     
+        <link href="/resurse/css/produs.css" type="text/css" rel="stylesheet" />
+    </head>
+    <body>
+
+        <%- include("../fragmente/header") %>
+    <main>
+        <section id="sectiune-produs">
+            <h2>Pagină produs</h2>
+                <article id="art-produs">
+                    <h3><span class="nume"><%- locals.prod.nume %></span></h3>
+                    <figure class="imag-produs">
+                        <img  src="/resurse/imagini/produse/<%- locals.prod.imagine %>" alt="[imagine <%- locals.prod.nume %>]" />
+                    </figure> 
+                    <p>Preț: <span class="pret"><%- locals.prod.pret %> Lei</span></p>
+                    <p>Descriere: <span class="descriere"><%- locals.prod.descriere %> </span></p>
+                    <p>Cod EAN: <span class="cod-ean"><%- locals.prod.cod_ean %> </span></p>
+                    <p>Categorie: <span class="categorie"><%- locals.prod.categorie %> </span></p>
+                    <p>Tip alimentare: <span class="tip-alimentare"><%- locals.prod.tip_alimentare %> </span></p>
+                    <p>Garanție: <span class="garantie"><%- locals.prod.perioada_garantie %> luni</span></p>
+                    <p>Culoare: <span class="culoare"><%- locals.prod.culoare %> </span></p>
+                    <p>Material: <span class="material"><%- locals.prod.material %> </span></p>
+                    <p>Funcții incluse: <span class="functii"><%- locals.prod.functii_incluse %> </span></p>
+                    <p>Uz profesional: <span class="profesional"><%- locals.prod.este_profesional ? 'Da' : 'Nu' %> </span></p>
+                    <p>Data adăugare: <span class="data-adaugare"><%- locals.prod.data_adaugare.toLocaleDateString('ro-RO') %> </span></p>    
+                </article>
+            
+        </section>
+    </main>
+
+    <%- include("../fragmente/footer") %>
+    </body>
+</html>

@@ -1,0 +1,172 @@
+@charset "UTF-8";
+.layout-produse {
+  display: flex;
+  gap: 2rem;
+  padding-top: 120px; /* Înlocuiește multele tag-uri <br> pentru coborârea sub header */
+  align-items: flex-start; /* Important pentru a permite funcționarea lui sticky */
+}
+
+.filtre-fixed {
+  position: sticky; /* Rămâne fixat pe ecran la scroll */
+  top: 120px;
+  width: 320px;
+  flex-shrink: 0;
+  background-color: var(--light-shade, #F1F2F0);
+  padding: 1.5rem;
+  border: 1px solid var(--culoare-contur);
+  border-radius: 20px;
+  box-shadow: 0px 0px 5px var(--culoare-contur);
+  max-height: calc(100vh - 140px);
+  overflow-y: auto; /* Adaugă scroll intern doar pentru filtre dacă sunt prea multe */
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.filtre-fixed p {
+  margin: 0;
+}
+
+.lista-produse {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.grid-produse {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+/* Pe ecrane mai mici (ex: tablete/telefoane), filtrele vor reveni deasupra produselor */
+@media (max-width: 820px) {
+  .layout-produse {
+    flex-direction: column;
+  }
+  .filtre-fixed {
+    position: static;
+    width: 100%;
+    max-height: none;
+  }
+  .grid-produse {
+    grid-template-columns: 1fr;
+  }
+}
+.container-butoane-filtre {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.produs {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--culoare-fundal);
+  color: var(--culoare-text);
+  border: 1px solid var(--light-accent);
+  border-radius: 15px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  height: 100%;
+  box-sizing: border-box;
+}
+.produs:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  border-color: var(--culoare-contur);
+}
+.produs .nume {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.4rem;
+}
+.produs .nume a {
+  color: var(--dark-shade);
+}
+.produs .nume a:hover {
+  color: var(--main-color);
+}
+.produs .categorie {
+  font-size: 0.9rem;
+  color: var(--dark-accent);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+.produs .descriere {
+  font-size: 0.95rem;
+  color: inherit;
+  line-height: 1.5;
+}
+.produs .detalii-produs {
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  padding-top: 15px;
+  border-top: 1px dashed var(--light-accent);
+}
+.produs .fig-imagine-produs {
+  flex: 0 0 120px;
+  margin: 0;
+}
+.produs .fig-imagine-produs img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid var(--light-accent);
+  object-fit: cover;
+}
+.produs .tabel-caracteristici {
+  flex: 1;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+.produs .tabel-caracteristici td {
+  padding: 4px 2px;
+  vertical-align: top;
+}
+.produs .tabel-caracteristici td:first-child {
+  color: var(--dark-shade);
+}
+.produs .container-pret-cos {
+  margin-top: auto; /* Împinge prețul și coșul mereu în partea de jos */
+  border-top: 2px solid var(--light-shade);
+  padding-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.produs .pret {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--main-color);
+  margin: 0;
+}
+.produs .selecteaza-cos {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: var(--dark-shade);
+  background-color: var(--light-shade);
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+.produs .selecteaza-cos:hover {
+  background-color: var(--main-color);
+  color: white;
+}
+.produs .selecteaza-cos input[type=checkbox] {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  accent-color: var(--dark-shade);
+}

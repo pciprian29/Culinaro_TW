@@ -54,12 +54,7 @@ nav#meniu-principal {
         display: flex;
         justify-content: center;
         gap: 10px; 
-        @for $i from 1 through 5 {
-            li.meniu-item:nth-child(#{$i}) {
-                transition-delay: #{$i * 0.05}s; 
-            }
-        }
-
+    
         li.meniu-item {
             position: relative;
             font-weight: bold; 
@@ -98,6 +93,12 @@ nav#meniu-principal {
                     bottom: 0; 
                     opacity: 1; 
                 }
+                
+                > ul.submeniu {
+                    visibility: visible;
+                    opacity: 1;
+                    transform: scale(1, 1);
+                }
             }
 
             ul.submeniu {
@@ -122,11 +123,12 @@ nav#meniu-principal {
                     height: 15px;
                 }
             
-            visibility: hidden;
-            opacity: 0;
-            transform: scale(0, 0);
-            transform-origin: center center;
-            transition: transform 0.5s ease, opacity 0.5s ease, visibility 0.5s ease;
+                visibility: hidden;
+                opacity: 0;
+                transform: scale(0, 0);
+                transform-origin: center center;
+                transition: transform 0.5s ease, opacity 0.5s ease, visibility 0.5s ease;
+                
                 
                 li {
                     width: 100%;
@@ -148,12 +150,6 @@ nav#meniu-principal {
                 &:first-child:hover { border-radius: 15px 15px 0 0; }
                 &:last-child:hover { border-radius: 0 0 15px 15px; }
                 }
-            }
-
-            &:hover > ul.submeniu {
-            visibility: visible;
-            opacity: 1;
-            transform: scale(1, 1);
             }
         }
     }

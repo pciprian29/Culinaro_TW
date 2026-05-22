@@ -3,7 +3,7 @@ const path= require("path");
 const fs=require("fs");
 const sass=require("sass");
 const sharp=require("sharp");
-
+const pg = require("pg");
 const app= express();
 app.set("view engine", "ejs")
 app.set('views', path.join(__dirname, 'views'));
@@ -17,6 +17,35 @@ const obGlobal={
     folderCss: path.join(__dirname,"resurse/css"),
     folderBackup: path.join(__dirname,"backup"),
 }
+
+client=new pg.Client({
+    database:"cti_2026",
+    user:"ciprian",
+    password:"ciprian",
+    host:"localhost",
+    port:5432
+})
+
+client.connect()
+
+// Extragem o singura data categoriile pentru a genera meniul dinamic
+client.query("select * from unnest(enum_range(null::categorie_produs))", function(err, rez){
+    if (err){
+        console.log("Eroare la extragere categorii", err);
+        console.log("Eroare extragere enum:", err.message);
+        console.log("-> Se încearcă extragerea direct din tabel...");
+        client.query("SELECT DISTINCT categorie AS unnest FROM produse", function(err2, rez2){
+            if (err2) {
+                console.log("Eroare și la preluarea din tabel:", err2.message);
+            } else {
+                app.locals.optiuniMeniu = rez2.rows;
+            }
+        });
+    }else{
+        app.locals.optiuniMeniu = rez.rows;
+    }
+})
+
 
 console.log("Folder index.js", __dirname);
 console.log("Folder curent (de lucru)", process.cwd());
@@ -40,10 +69,10 @@ app.get("/favicon.ico", function(req, res){
 app.get(["/", "/index","/home"], function(req, res){
     let sfertCurent = (Math.floor(new Date().getMinutes() / 15) + 1).toString(); // "1", "2", "3" sau "4"
     
-    // Filtrăm server-side doar imaginile pentru sfertul curent
+   
     let imaginiFiltrate = obGlobal.obImagini.imagini.filter(imag => imag.sfert_ora === sfertCurent);
     
-    // Trunchiem lista la un maxim de 10 imagini
+   
     if (imaginiFiltrate.length > 10) {
         imaginiFiltrate = imaginiFiltrate.slice(0, 10);
     }
@@ -53,6 +82,62 @@ app.get(["/", "/index","/home"], function(req, res){
         imagini : imaginiFiltrate
     });
 });
+
+// app.get("/produse",function(req, res){
+//     clauzawhere="";
+//     if (req.query.tip){
+//         clauzawhere=`where categorie='${req.query.tip}'`
+//     }
+//     client.query(`select * from produse ${clauzawhere}`, function(err, rez){
+//         if (err){
+//             console.log("Eroare la interogare", err);
+//             afisareEroare(res,2);
+//         }else{
+//             res.render("pagini/produse",{
+//                 produse: rez.rows,
+//                 optiuni:[]
+//             })
+
+//         }
+//         })
+// });
+
+app.get("/produse", function(req, res){
+    let sql = "select * from produse";
+    let parametri = [];
+    if (req.query.tip) {
+        sql += " where categorie=$1";
+        parametri.push(req.query.tip);
+    }
+    client.query(sql, parametri, function(err, rez){
+        if (err){
+            console.log("Eroare la interogare", err)
+            console.log("Eroare la interogare produse:", err.message)
+            afisareEroare(res,2)
+        }
+        else{
+            res.render("pagini/produse",{
+                produse:rez.rows
+            })
+        }
+    })
+})
+
+app.get("/produs/:id",function(req, res){
+    client.query(`select * from produse where id=$1`, [req.params.id], function(err, rez){
+        if (err){
+            console.log("Eroare la interogare", err);
+            console.log("Eroare la interogare produs unic:", err.message);
+            afisareEroare(res,404, "Produs inexistent");
+        }else{
+            res.render("pagini/produs",{
+                prod: rez.rows[0],
+            })
+
+        }
+
+        })
+    });
 
 app.get("/despre", function(req, res){
     res.render("pagini/despre");
@@ -175,7 +260,7 @@ function compileazaScss(caleScss, caleCss){
 
     let numeFisCss=path.basename(caleCss);
     if (fs.existsSync(caleCss)){
-        fs.copyFileSync(caleCss, path.join(obGlobal.folderBackup, "resurse/css",numeFisCss ))// +(new Date()).getTime()
+        fs.copyFileSync(caleCss, path.join(obGlobal.folderBackup, "resurse/css",numeFisCss ))
     }
     rez=sass.compile(caleScss, {"sourceMap":true});
     fs.writeFileSync(caleCss,rez.css)

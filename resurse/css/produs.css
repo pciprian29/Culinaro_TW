@@ -1,0 +1,117 @@
+@charset "UTF-8";
+#sectiune-produs {
+  padding-top: 120px; /* Spațiere corectă sub header-ul fix */
+  padding-bottom: 50px;
+}
+#sectiune-produs h2 {
+  text-align: center;
+  color: var(--dark-shade);
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+}
+
+#art-produs {
+  margin: 0 auto;
+  width: 90%;
+  max-width: 800px;
+  background-color: #ffffff;
+  border: 1px solid var(--light-accent);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+#art-produs h3 {
+  margin-top: 0;
+  color: var(--main-color);
+  font-size: 2rem;
+  text-align: center;
+  border-bottom: 2px dashed var(--light-accent);
+  padding-bottom: 1.5rem;
+}
+#art-produs .imag-produs {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0 2.5rem 0;
+}
+#art-produs .imag-produs img {
+  max-width: 100%;
+  width: 450px;
+  height: auto;
+  border-radius: 15px;
+  border: 1px solid var(--light-shade);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+#art-produs .imag-produs img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+#art-produs p {
+  margin: 0;
+  padding: 15px 20px;
+  font-size: 1.1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+  color: var(--dark-accent);
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+#art-produs p span {
+  font-weight: bold;
+  color: var(--dark-shade);
+  text-align: right;
+  max-width: 65%;
+  line-height: 1.4;
+}
+#art-produs p:nth-of-type(odd) {
+  background-color: var(--light-shade);
+}
+#art-produs p:nth-of-type(even) {
+  background-color: #ffffff;
+  border: 1px solid var(--light-shade);
+}
+#art-produs p:hover {
+  background-color: rgba(171, 121, 65, 0.1); /* Nuanță transparentă de main-color */
+}
+#art-produs {
+  /* Design special pentru rândul cu Prețul */
+}
+#art-produs p:first-of-type {
+  background-color: var(--dark-shade);
+  color: var(--light-shade);
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  border: none;
+}
+#art-produs p:first-of-type span {
+  color: var(--main-color);
+  font-size: 1.6rem;
+}
+#art-produs p:first-of-type:hover {
+  background-color: var(--dark-shade);
+}
+
+/* Responsivitate pentru ecrane de telefon */
+@media screen and (max-width: 700px) {
+  #sectiune-produs {
+    padding-top: 100px;
+  }
+  #art-produs {
+    padding: 1.5rem;
+    border-radius: 15px;
+  }
+  #art-produs p {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  #art-produs p span {
+    text-align: left;
+    max-width: 100%;
+  }
+}
