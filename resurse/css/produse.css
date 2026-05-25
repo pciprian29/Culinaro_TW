@@ -2,12 +2,15 @@
 .layout-produse {
   display: flex;
   gap: 2rem;
-  padding-top: 120px; /* Înlocuiește multele tag-uri <br> pentru coborârea sub header */
-  align-items: flex-start; /* Important pentru a permite funcționarea lui sticky */
+  padding-top: 120px;
+  /* Înlocuiește multele tag-uri <br> pentru coborârea sub header */
+  align-items: flex-start;
+  /* Important pentru a permite funcționarea lui sticky */
 }
 
 .filtre-fixed {
-  position: sticky; /* Rămâne fixat pe ecran la scroll */
+  position: sticky;
+  /* Rămâne fixat pe ecran la scroll */
   top: 120px;
   width: 320px;
   flex-shrink: 0;
@@ -17,7 +20,8 @@
   border-radius: 20px;
   box-shadow: 0px 0px 5px var(--culoare-contur);
   max-height: calc(100vh - 140px);
-  overflow-y: auto; /* Adaugă scroll intern doar pentru filtre dacă sunt prea multe */
+  overflow-y: auto;
+  /* Adaugă scroll intern doar pentru filtre dacă sunt prea multe */
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -134,7 +138,8 @@
   color: var(--dark-shade);
 }
 .produs .container-pret-cos {
-  margin-top: auto; /* Împinge prețul și coșul mereu în partea de jos */
+  margin-top: auto;
+  /* Împinge prețul și coșul mereu în partea de jos */
   border-top: 2px solid var(--light-shade);
   padding-top: 15px;
   display: flex;
@@ -169,4 +174,109 @@
   width: 16px;
   height: 16px;
   accent-color: var(--dark-shade);
+}
+
+#container-paginare {
+  margin: 20px auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+#container-paginare .btn-pagina {
+  padding: 5px 15px;
+  cursor: pointer;
+  background-color: var(--culoare-primara, #2a3643);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin: 0 5px;
+  transition: background-color 0.3s ease;
+}
+#container-paginare .btn-pagina.active, #container-paginare .btn-pagina:hover {
+  background-color: var(--light-accent, #567b9c);
+}
+
+#infoSumaFix {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(42, 54, 67, 0.9);
+  color: white;
+  padding: 20px 40px;
+  border-radius: 10px;
+  font-size: 24px;
+  z-index: 9999;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+#mesaj-fara-produse {
+  display: none;
+  text-align: center;
+  font-size: 1.5rem;
+  color: var(--bs-danger, red);
+  font-weight: bold;
+  margin: 40px 0;
+}
+#mesaj-fara-produse.afisat {
+  display: block;
+  animation: fadeInMesaj 0.3s ease-in-out;
+}
+
+@keyframes fadeInMesaj {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+#info-numar-produse {
+  font-size: 1.1rem;
+  color: #495057;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+#info-numar-produse span {
+  font-weight: bold;
+  color: white;
+  background-color: var(--bs-primary, #0d6efd);
+  padding: 4px 10px;
+  border-radius: 12px;
+  margin-left: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.badge-cel-mai-ieftin {
+  background-color: var(--bs-success, #198754);
+  color: white;
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  border-radius: 12px;
+  margin-left: 10px;
+  vertical-align: middle;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.badge-cel-mai-ieftin i {
+  font-size: 0.8rem;
 }

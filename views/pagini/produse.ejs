@@ -23,13 +23,15 @@
                 <!-- Nume - Form control clasic in Grid -->
                 <div class="col-12">
                     <label for="inp-nume" class="form-label">Nume:</label>
-                    <input type="text" id="inp-nume" class="form-control" placeholder="ex: cuptor">
+                    <!-- input 1 BD -->
+                    <input type="text" id="inp-nume" class="form-control" placeholder="ex: cuptor" maxlength="<%- locals.maxNumeLen %>">
                 </div>
             
                 <!-- Textarea cu Floating Label și Invalid Feedback -->
                 <div class="col-12">
                     <div class="form-floating">
-                        <textarea class="form-control" id="inp-descriere" placeholder="Caută în descriere..." style="height: 80px"></textarea>
+                        <!-- input 2 BD -->
+                        <textarea class="form-control" id="inp-descriere" placeholder="Caută în descriere..." style="height: 80px" maxlength="<%- locals.maxDescLen %>"></textarea> 
                         <label for="inp-descriere">Cuvânt în descriere</label>
                         <div class="invalid-feedback">
                             Textul conține caractere invalide (< sau >)!
@@ -41,27 +43,25 @@
                 <div class="col-12">
                     <label for="inp-material" class="form-label">Material:</label>
                     <input class="form-control" list="lista-materiale" id="inp-material" placeholder="Orice material">
-                    <datalist id="lista-materiale">
-                        <option value="Inox">
-                        <option value="Plastic">
-                        <option value="Fonta">
-                        <option value="Aluminiu">
-                        <option value="Lemn">
+                    <!-- input 3 bd -->
+                    <datalist id="lista-materiale">   
+                        <% for(let mat of locals.materiale) { %>
+                            <option value="<%- mat.material %>">
+                        <% } %>
                     </datalist>
                 </div>                                   
 
                 <!-- Garanție - Grup de Toggle Buttons (Radios) -->
                 <div class="col-12">
                     <label class="form-label d-block">Garanție:</label>
-                    <div class="btn-group w-100" role="group">
-                        <input type="radio" class="btn-check" name="gr_rad" id="i_rad1" value="0:11" autocomplete="off">
-                        <label class="btn btn-outline-primary btn-sm" for="i_rad1">&lt; 12 Luni</label>
-                    
-                        <input type="radio" class="btn-check" name="gr_rad" id="i_rad2" value="12:24" autocomplete="off">
-                        <label class="btn btn-outline-primary btn-sm" for="i_rad2">12-24 Luni</label>
-                    
-                        <input type="radio" class="btn-check" name="gr_rad" id="i_rad4" value="toate" autocomplete="off" checked>
-                        <label class="btn btn-outline-primary btn-sm" for="i_rad4">Toate</label>
+                    <div class="btn-group w-100" role="group" style="flex-wrap: wrap;">
+                        <input type="radio" class="btn-check" name="gr_rad" id="i_rad_toate" value="toate" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary btn-sm" for="i_rad_toate">Toate</label>
+                        <!-- input 4 bd -->
+                        <% for(let i=0; i<locals.garantii.length; i++) { %>
+                            <input type="radio" class="btn-check" name="gr_rad" id="i_rad_<%- i %>" value="<%- locals.garantii[i].perioada_garantie %>" autocomplete="off">
+                            <label class="btn btn-outline-primary btn-sm" for="i_rad_<%- i %>"><%- locals.garantii[i].perioada_garantie %></label>
+                        <% } %>
                     </div>
                 </div>
 
@@ -73,11 +73,12 @@
 
                 <!-- Preț Range -->
                 <div class="col-12">
-                    <label for="inp-pret-min" class="form-label">Preț minim: <span id="infoRangeMin">(0)</span></label>
-                    <input type="range" class="form-range" id="inp-pret-min" value="0" min="0" max="20000">
-                    
-                    <label for="inp-pret-max" class="form-label mt-2">Preț maxim: <span id="infoRangeMax">(20000)</span></label>
-                    <input type="range" class="form-range" id="inp-pret-max" value="20000" min="0" max="20000">
+                    <!-- input 5 bd  -->
+                    <label for="inp-pret-min" class="form-label">Preț minim: <span id="infoRangeMin">(<%- locals.minPret %>)</span></label>
+                    <input type="range" class="form-range" id="inp-pret-min" value="<%- locals.minPret %>" min="<%- locals.minPret %>" max="<%- locals.maxPret %>">
+                    <!-- input 6 bd  -->
+                    <label for="inp-pret-max" class="form-label mt-2">Preț maxim: <span id="infoRangeMax">(<%- locals.maxPret %>)</span></label>
+                    <input type="range" class="form-range" id="inp-pret-max" value="<%- locals.maxPret %>" min="<%- locals.minPret %>" max="<%- locals.maxPret %>">
                 </div>
 
                 <!-- Select Simplu -->
@@ -85,6 +86,7 @@
                     <label for="inp-categorie" class="form-label">Categorie:</label>
                     <select class="form-select" id="inp-categorie">
                         <option id="sel-toate" selected value="toate">Toate (oricare)</option>
+                        <!-- input 7 bd -->
                         <% if (locals.optiuniMeniu) { %>
                             <% for (let opt of locals.optiuniMeniu) { %>
                                 <option value="<%- opt.unnest %>"><%- opt.unnest %> </option>
@@ -96,12 +98,12 @@
                 <!-- Select Multiplu -->
                 <div class="col-12">
                     <label for="inp-alimentare" class="form-label">Tip alimentare:</label>
+                    <!-- input 8 bd -->
                     <select class="form-select" id="inp-alimentare" multiple size="4">
                         <option value="toate" selected>Oricare (Toate)</option>
-                        <option value="Electric">Electric</option>
-                        <option value="Gaz">Gaz</option>
-                        <option value="Mixt">Mixt</option>
-                        <option value="Manual">Manual</option>
+                        <% for(let alim of locals.alimentari) { %>
+                            <option value="<%- alim.tip_alimentare %>"><%- alim.tip_alimentare %></option>
+                        <% } %>
                     </select>
                 </div>
 
@@ -131,6 +133,8 @@
         <section id="produse" class="lista-produse">
 
             <h2>Produse</h2>
+            <div id="container-paginare" style="margin-bottom: 20px; text-align: center; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
+            </div>
             <div class="grid-produse">
     <% for( let prod of locals.produse) { %>
         <article id="art<%- prod.id %>" class="produs <%- prod.categorie %>">

@@ -83,24 +83,27 @@ app.get(["/", "/index","/home"], function(req, res){
     });
 });
 
-// app.get("/produse",function(req, res){
-//     clauzawhere="";
-//     if (req.query.tip){
-//         clauzawhere=`where categorie='${req.query.tip}'`
-//     }
-//     client.query(`select * from produse ${clauzawhere}`, function(err, rez){
-//         if (err){
-//             console.log("Eroare la interogare", err);
-//             afisareEroare(res,2);
-//         }else{
-//             res.render("pagini/produse",{
-//                 produse: rez.rows,
-//                 optiuni:[]
-//             })
 
+// app.get("/produse", function(req, res){
+//     let sql = "select * from produse";
+//     let parametri = [];
+//     if (req.query.tip) {
+//         sql += " where categorie=$1";
+//         parametri.push(req.query.tip);
+//     }
+//     client.query(sql, parametri, function(err, rez){
+//         if (err){
+//             console.log("Eroare la interogare", err)
+//             console.log("Eroare la interogare produse:", err.message)
+//             afisareEroare(res,2)
 //         }
-//         })
-// });
+//         else{
+//             res.render("pagini/produse",{
+//                 produse:rez.rows
+//             })
+//         }
+//     })
+// })
 
 app.get("/produse", function(req, res){
     let sql = "select * from produse";
@@ -109,19 +112,58 @@ app.get("/produse", function(req, res){
         sql += " where categorie=$1";
         parametri.push(req.query.tip);
     }
-    client.query(sql, parametri, function(err, rez){
+
+    // 1. Cerem produsele (cu sau fără filtru de categorie)
+    client.query(sql, parametri, function(err, rezProduse){
         if (err){
-            console.log("Eroare la interogare", err)
-            console.log("Eroare la interogare produse:", err.message)
-            afisareEroare(res,2)
+            console.log("Eroare la interogare produse:", err.message);
+            return afisareEroare(res, 2);
         }
-        else{
-            res.render("pagini/produse",{
-                produse:rez.rows
-            })
-        }
-    })
-})
+
+        // 2. Cerem valorile minime/maxime (pentru preț, nume, descriere și numărul de produse profesionale)
+        let sqlStats = `SELECT MIN(pret) as min_pret, MAX(pret) as max_pret, MAX(LENGTH(nume)) as max_nume, MAX(LENGTH(descriere)) as max_desc, COUNT(*) FILTER (WHERE este_profesional = true) as nr_prof FROM produse`;
+        client.query(sqlStats, [], function(err, rezStats){
+            if (err) { console.log("Eroare stats:", err.message); return afisareEroare(res, 2); }
+
+            // 3. Cerem materialele unice
+            client.query("SELECT DISTINCT material FROM produse WHERE material IS NOT NULL", [], function(err, rezMateriale){
+                if (err) { console.log("Eroare materiale:", err.message); return afisareEroare(res, 2); }
+
+                // 4. Cerem tipurile de alimentare unice
+                client.query("SELECT DISTINCT tip_alimentare FROM produse WHERE tip_alimentare IS NOT NULL", [], function(err, rezAlimentari){
+                    if (err) { console.log("Eroare alimentari:", err.message); return afisareEroare(res, 2); }
+
+                    // 5. Cerem garanțiile unice
+                    client.query("SELECT DISTINCT perioada_garantie FROM produse ORDER BY perioada_garantie", [], function(err, rezGarantii){
+                        if (err) { console.log("Eroare garantii:", err.message); return afisareEroare(res, 2); }
+
+                        // 6. Cerem categoriile din ENUM
+                        client.query("SELECT unnest(enum_range(NULL::categorie_produs)) as unnest", [], function(err, rezCategorii){
+                            if (err) { console.log("Eroare categorii:", err.message); return afisareEroare(res, 2); }
+
+                            // TOATE CERERILE AU FOST FINALIZATE CU SUCCES!
+                            // Trimitem datele către EJS
+                            let stats = rezStats.rows[0]; // Extragem primul (și singurul) rând cu statistici
+
+                            res.render("pagini/produse", {
+                                produse: rezProduse.rows,
+                                minPret: Math.floor(stats.min_pret || 0),
+                                maxPret: Math.ceil(stats.max_pret || 20000),
+                                maxNumeLen: stats.max_nume || 100,
+                                maxDescLen: stats.max_desc || 500,
+                                nrProfesionale: stats.nr_prof || 0,
+                                materiale: rezMateriale.rows,
+                                alimentari: rezAlimentari.rows,
+                                garantii: rezGarantii.rows,
+                                optiuniMeniu: rezCategorii.rows
+                            });
+                        }); // final callback 6
+                    }); // final callback 5
+                }); // final callback 4
+            }); // final callback 3
+        }); // final callback 2
+    }); // final callback 1
+});
 
 app.get("/produs/:id",function(req, res){
     client.query(`select * from produse where id=$1`, [req.params.id], function(err, rez){
@@ -156,7 +198,33 @@ app.get("/galerie", function(req, res){
     });
 });
 
+// app.get("*/galerie-animata.css",function(req, res){
 
+//     var sirScss=fs.readFileSync(path.join(__dirname,"resurse/scss_ejs/galerie_animata.scss")).toString("utf8");
+//     var culori=["navy","black","purple","grey"];
+//     var indiceAleator=Math.floor(Math.random()*culori.length);
+//     var culoareAleatoare=culori[indiceAleator]; 
+//     rezScss=ejs.render(sirScss,{culoare:culoareAleatoare});
+//     console.log(rezScss);
+//     var caleScss=path.join(__dirname,"temp/galerie_animata.scss")
+//     fs.writeFileSync(caleScss,rezScss);
+//     try {
+//         rezCompilare=sass.compile(caleScss,{sourceMap:true});
+        
+//         var caleCss=path.join(__dirname,"temp/galerie_animata.css");
+//         fs.writeFileSync(caleCss,rezCompilare.css);
+//         res.setHeader("Content-Type","text/css");
+//         res.sendFile(caleCss);
+//     }
+//     catch (err){
+//         console.log(err);
+//         res.send("Eroare");
+//     }
+// });
+
+// app.get("*/galerie-animata.css.map",function(req, res){
+//     res.sendFile(path.join(__dirname,"temp/galerie-animata.css.map"));
+// });
 
 
 function initErori(){
